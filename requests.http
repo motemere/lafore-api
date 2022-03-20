@@ -6,3 +6,16 @@ Content-Type: application/json
   "0",
   "2"
 ]
+
+###
+
+POST https://lafore-api.herokuapp.com/array/sort HTTP/1.1
+Content-Type: application/json
+
+[
+  "4",
+  "7",
+  "1",
+  "0",
+  "2"
+]
