@@ -10,6 +10,10 @@ git {
     }
 }
 
+compileJava {
+    options.release = 17
+}
+
 group = 'me.motemere'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
