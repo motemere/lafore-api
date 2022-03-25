@@ -17,6 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 class LaforeApiApplicationTests {
 
   protected MockMvc mvc;
+  protected final String URI = "/array/sort";
 
   @Autowired
   WebApplicationContext webApplicationContext;
@@ -28,10 +29,9 @@ class LaforeApiApplicationTests {
 
   @Test
   public void sort() throws Exception {
-    String uri = "/array/sort";
     String json = "[\"1\",\"0\",\"2\"]";
 
-    MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
+    MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(URI)
         .contentType(MediaType.APPLICATION_JSON_VALUE).content(json)).andReturn();
 
     int status = mvcResult.getResponse().getStatus();
