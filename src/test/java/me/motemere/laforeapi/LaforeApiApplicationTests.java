@@ -17,7 +17,6 @@ import org.springframework.web.context.WebApplicationContext;
 class LaforeApiApplicationTests {
 
   protected MockMvc mvc;
-  protected final String URI = "/array/sort";
 
   @Autowired
   WebApplicationContext webApplicationContext;
@@ -31,7 +30,7 @@ class LaforeApiApplicationTests {
   public void sort() throws Exception {
     String json = "[\"1\",\"0\",\"2\"]";
 
-    MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(URI)
+    MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post("/array/sort")
         .contentType(MediaType.APPLICATION_JSON_VALUE).content(json)).andReturn();
 
     int status = mvcResult.getResponse().getStatus();
@@ -41,4 +40,17 @@ class LaforeApiApplicationTests {
     assertEquals(content, "[0,1,2]");
   }
 
+  @Test
+  public void ping() throws Exception {
+    String response = "Pong!";
+
+    MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/array/ping")).andReturn();
+
+    int status = mvcResult.getResponse().getStatus();
+    assertEquals(200, status);
+
+    String content = mvcResult.getResponse().getContentAsString();
+    assertEquals(content, response);
+  }
+  
 }
