@@ -28,6 +28,7 @@ class LaforeApiApplicationTests {
   }
 
   @Test
+  @DisplayName("Test sort array")
   public void sort() throws Exception {
     String json = "[\"1\",\"0\",\"2\"]";
 
@@ -42,6 +43,7 @@ class LaforeApiApplicationTests {
   }
 
   @Test
+  @DisplayName("Test ping")
   public void ping() throws Exception {
     String response = "Pong!";
 
