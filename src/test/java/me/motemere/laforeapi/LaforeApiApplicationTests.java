@@ -3,6 +3,7 @@ package me.motemere.laforeapi;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,6 +52,12 @@ class LaforeApiApplicationTests {
 
     String content = mvcResult.getResponse().getContentAsString();
     assertEquals(content, response);
+  }
+
+  @Test
+  @DisplayName("Test custom AppConfiguration")
+  public void testAppConfiguration() {
+    assertEquals("TEST", AppConfiguration.getInstance().get("app.config"));
   }
   
 }
