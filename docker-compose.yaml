@@ -1,6 +1,6 @@
 services:
   api:
-    image: motemere/lafore-api:0.0.3
+    image: motemere/lafore-api:0.0.4
     container_name: lafore-api
     ports:
       - "8080:8080"

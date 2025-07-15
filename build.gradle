@@ -17,8 +17,7 @@ java {
 }
 
 group = 'me.motemere'
-version = '0.0.3'
-//sourceCompatibility = '21'
+version = '0.0.4'
 
 repositories {
     mavenCentral()

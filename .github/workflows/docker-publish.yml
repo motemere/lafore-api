@@ -1,9 +1,8 @@
 name: Build and Push Docker image
 
 on:
-  push:
-    branches:
-      - 'main'
+  release:
+    types: [created]
 
 jobs:
   build-and-push:
@@ -26,6 +25,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: motemere/lafore-api:latest,motemere/lafore-api:0.0.3
+          tags: motemere/lafore-api:latest,motemere/lafore-api:0.0.4
           build-args: |
-            BUILD_VERSION=0.0.3
+            BUILD_VERSION=0.0.4
