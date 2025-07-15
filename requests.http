@@ -2,17 +2,6 @@ POST http://localhost:8080/array/sort HTTP/1.1
 Content-Type: application/json
 
 [
-  "1",
-  "0",
-  "2"
-]
-
-###
-
-POST https://lafore-api.herokuapp.com/array/sort HTTP/1.1
-Content-Type: application/json
-
-[
   "4",
   "7",
   "1",
@@ -23,7 +12,3 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/array/ping HTTP/1.1
-
-###
-
-GET https://lafore-api.herokuapp.com/array/ping HTTP/1.1

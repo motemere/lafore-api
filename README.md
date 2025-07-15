@@ -26,12 +26,10 @@ make lint
 
 ## Supported Requests
 
-Application deployed on Heroku: [https://lafore-api.herokuapp.com/](https://lafore-api.herokuapp.com/)
-
 Request to uri **array/sort**:
 
 ```http
-POST https://lafore-api.herokuapp.com/array/sort HTTP/1.1
+POST https://app.base.url/array/sort HTTP/1.1
 Content-Type: application/json
 
 [

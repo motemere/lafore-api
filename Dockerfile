@@ -1,10 +1,32 @@
-FROM openjdk:17-slim
+# build container
+FROM gradle:8.9.0-jdk21-alpine AS temp_build_image
 
-RUN apt-get update && apt-get install -y make
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
 
-COPY . /usr/src/api
-WORKDIR /usr/src/api
+COPY build.gradle settings.gradle $APP_HOME
+COPY gradle $APP_HOME/gradle
+COPY --chown=gradle:gradle . /home/gradle/src
 
-RUN make build
+USER root
 
-CMD ["java", "-jar","build/libs/lafore-api-0.0.2.jar"]
+RUN chown -R gradle /home/gradle/src
+
+COPY . .
+
+RUN gradle clean build -x test -x checkstyleMain -x checkstyleTest
+
+# target container
+FROM openjdk:21-slim
+
+ARG BUILD_VERSION
+
+ENV ARTIFACT_NAME=lafore-api-${BUILD_VERSION}.jar
+ENV APP_HOME=/usr/app/
+
+WORKDIR $APP_HOME
+COPY --from=temp_build_image $APP_HOME/build/libs/$ARTIFACT_NAME .
+
+EXPOSE 8080
+
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
