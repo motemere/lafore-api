@@ -1,9 +1,1 @@
-plugins {
-    id 'com.alexvasilkov.git-dependencies' version '2.0.3'
-}
-
-git {
-    cleanup true
-}
-
 rootProject.name = 'lafore-api'

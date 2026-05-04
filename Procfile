@@ -1,1 +1,0 @@
-web: java $JAVA_OPTS -jar build/libs/lafore-api-0.0.4.jar -Dserver.port=$PORT $JAR_OPTS
