@@ -1,35 +1,46 @@
 plugins {
-    id 'org.springframework.boot' version '3.5.2'
+    id 'org.springframework.boot' version '4.0.6'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
-}
-
-git {
-    implementation 'https://github.com/motemere/lafore-java.git', {
-        tag '0.0.3'
-    }
+    id 'checkstyle'
 }
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 group = 'me.motemere'
-version = '0.0.4'
+version = project.version
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'GitHubPackages'
+        url = uri("https://maven.pkg.github.com/motemere/lafore-java")
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+            password = project.findProperty("gpr.key") ?: System.getenv("GPR_TOKEN")
+        }
+    }
+}
+
+configurations {
+    mockitoAgent
 }
 
 dependencies {
-    implementation group: 'com.google.code.gson', name: 'gson', version: '2.13.1'
-    implementation group: 'org.json', name: 'json', version: '20250517'
+    implementation 'me.motemere:lafore-java:1.0.0'
+    implementation "com.google.code.gson:gson:2.14.0"
+    implementation "org.json:json:20251224"
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    mockitoAgent('org.mockito:mockito-core') { transitive = false }
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
+    jvmArgs "-javaagent:${configurations.mockitoAgent.asPath}"
+    jvmArgs "-Xshare:off"
 }
