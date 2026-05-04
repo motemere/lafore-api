@@ -21,7 +21,10 @@ jobs:
           java-version: '25'
           cache: 'gradle'
       - name: run tests
-        run: make test
+        run:
+          echo "GPR_USER=$GPR_USER"
+          echo "GPR_TOKEN length=${#GPR_TOKEN}"
+          make test
   checkstyle-job:
     needs:
       - tests-job
@@ -37,4 +40,7 @@ jobs:
           java-version: '25'
           cache: 'gradle'
       - name: run lint
-        run: make lint
+        run:
+          echo "GPR_USER=$GPR_USER"
+          echo "GPR_TOKEN length=${#GPR_TOKEN}"
+          make lint
