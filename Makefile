@@ -12,9 +12,9 @@ lint:
 test:
 	./gradlew test
 
-VERSION := $(shell grep "^version=" gradle.properties | cut -d'=' -f2)
-GPR_USER := $(shell grep gpr.user ~/.gradle/gradle.properties | cut -d= -f2)
-GPR_TOKEN := $(shell grep gpr.key ~/.gradle/gradle.properties | cut -d= -f2)
+VERSION ?= $(shell grep "^version=" gradle.properties | cut -d'=' -f2)
+GPR_USER ?= $(shell grep gpr.user ~/.gradle/gradle.properties | cut -d= -f2)
+GPR_TOKEN ?= $(shell grep gpr.key ~/.gradle/gradle.properties | cut -d= -f2)
 
 docker-build:
 	docker build \
