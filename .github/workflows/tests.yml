@@ -19,6 +19,9 @@ jobs:
           cache: 'gradle'
       - name: run tests
         run: make test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ github.actor }}
   checkstyle-job:
     needs:
       - tests-job
