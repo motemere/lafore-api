@@ -7,14 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LaforeApiApplication {
 
-  public static void main(String[] args) {
-    Writer writer = new Writer() {
-    };
+    public static void main(String[] args) {
+        Writer writer = new Writer() {
+        };
 
-    writer.writeLine(String.format("Hello, World from '%s' and special thx for Robert W. Lafore.",
-        LaforeApiApplication.class));
+        writer.writeLine(String.format("Hello, World from '%s' and special thx for Robert W. Lafore.",
+                LaforeApiApplication.class));
 
-    SpringApplication.run(LaforeApiApplication.class, args);
-  }
+        SpringApplication.run(LaforeApiApplication.class, args);
+    }
 
 }
